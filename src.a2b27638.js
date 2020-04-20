@@ -17317,10 +17317,14 @@ var _extKeymap = require("./extKeymap");
 
 var _prosemirrorCommands = require("prosemirror-commands");
 
-var editorEl = document.getElementById("editor");
+// Getting JATS XML into string
 var contentEl = document.getElementById("content");
+var xmlParser = new DOMParser();
+var xmlDOM = xmlParser.parseFromString(contentEl.innerHTML, "application/xml"); // Initialize ProseMirror modules
 
-var doc = _prosemirrorModel.DOMParser.fromSchema(_schema.schema).parse(contentEl);
+var editorEl = document.getElementById("editor"); //let contentEl = document.getElementById("content");
+
+var doc = _prosemirrorModel.DOMParser.fromSchema(_schema.schema).parse(xmlDOM);
 
 var plugins = [_menu.menu, (0, _prosemirrorKeymap.keymap)((0, _extKeymap.buildKeymap)(_schema.schema)), (0, _prosemirrorKeymap.keymap)(_prosemirrorCommands.baseKeymap)]; // include plugins here
 
@@ -17360,7 +17364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41239" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41007" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
